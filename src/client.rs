@@ -90,14 +90,17 @@ impl BridgeClient {
         self.request(request).await
     }
 
+    /// Retrieve all supported chains and tokens for deposits and withdrawals.
     pub async fn get_supported_assets(&self) -> Result<GetSupportedAssetsResponse> {
         self.get("supported-assets", &()).await
     }
 
+    /// Get an estimated quote for a deposit or withdrawal, including output amounts, checkout time, and a detailed fee breakdown.
     pub async fn get_quote(&self, args: &GetQuoteRequest) -> Result<GetQuoteResponse> {
         self.post("quote", args).await
     }
 
+    /// Generate unique deposit addresses for depositing assets to your Polymarket wallet.
     pub async fn create_deposit_addresses(
         &self,
         args: &CreateDepositAddressesRequest,
@@ -105,6 +108,7 @@ impl BridgeClient {
         self.post("deposit", args).await
     }
 
+    /// Generate unique deposit addresses for withdrawing USDC.e from your Polymarket wallet to any supported chain and token.
     pub async fn create_withdrawal_addresses(
         &self,
         args: &CreateWithdrawalAddressesRequest,
@@ -112,6 +116,7 @@ impl BridgeClient {
         self.post("withdraw", args).await
     }
 
+    /// Get the transaction status for all deposits and withdrawals associated with a given address.
     pub async fn get_transaction_status(
         &self,
         args: &GetTransactionStatusRequest,
