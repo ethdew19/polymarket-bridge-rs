@@ -66,7 +66,6 @@ impl BridgeClient {
         body: &Body,
     ) -> Result<Res> {
         let path = format!("{}/{}", self.base_url, path);
-        println!("{:?}", path);
         let request = self
             .client
             .request(Method::POST, path)
@@ -83,7 +82,6 @@ impl BridgeClient {
     ) -> Result<Res> {
         let parms = params.query_params();
         let path = format!("{}/{}{}", self.base_url, path, parms);
-        println!("{:?}", path);
         let request = self
             .client
             .request(Method::GET, path)
